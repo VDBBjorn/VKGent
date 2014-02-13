@@ -1,0 +1,38 @@
+﻿@model p2g33_web.Models.ViewModels.DetailsStatementGameViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>Details stellingenspel: @Model.Title</h2>
+<div class="alert alert-info">
+    Aan de hand van volgende stellingen kan u uw attitude en kennis nagaan met betrekking tot kindermishandeling.   
+    <br />
+    Uw eerste antwoord wordt opgeslagen zodat er tijdens het vormingsmoment de gelegenheid is om deze stellingen in groep te bespreken.
+</div>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.Description)</th>
+        <td>@Html.DisplayFor(t => t.Description)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.AvailableFrom)</th>
+        <td>@Html.DisplayFor(t => t.AvailableFrom)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.AvailableUntil)</th>
+        <td>@Html.DisplayFor(t => t.AvailableUntil)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.Status)</th>
+        <td>@Html.DisplayFor(t => t.Status)</td>
+    </tr>
+</table>
+@using (Html.BeginForm("PlayStatementGame", "Element", FormMethod.Post))
+{
+    @Html.HiddenFor(t => t.ElementId)
+    @Html.HiddenFor(t => t.LearningProcessCode)
+    <p style="text-align: right">
+        <input type="submit" class="btn btn-primary" value="Verder"/>
+    </p>
+}

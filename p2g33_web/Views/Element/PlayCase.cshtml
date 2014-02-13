@@ -1,0 +1,17 @@
+﻿@model p2g33_web.Models.ViewModels.CaseViewModel
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/jquery-1.6.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+}
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Html.DisplayFor(t => t.Title)</h2>
+<legend>@Html.DisplayFor(t => t.Description)</legend>
+<div id="body-case">
+    @Html.Partial("FeedbackCase",Model)
+</div>

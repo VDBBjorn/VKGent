@@ -1,0 +1,207 @@
+﻿@model p2g33_web.Models.ViewModels.EvaluationFormViewModel
+
+@{
+    ViewBag.Title = "Evaluatieformulier";
+}
+
+<h2>@ViewBag.Title</h2>
+<div>
+    
+
+    @using (Html.BeginForm("SaveEvaluationForm", "LearningProcesses", FormMethod.Post))
+    {
+        @Html.HiddenFor(t => t.LearningProcessCode)
+        <div class="alert alert-info">
+            Graag houden we met uw mening rekening in het bijsturen van onze vorming.
+            <br />Daarom vragen wij u dit evaluatieformulier in te vullen.
+            Dank voor uw medewerking.
+        </div>
+        <p>@Html.ValidationSummary()</p>
+        <p>
+            Beoordeel volgende stellingen
+            <br/>OV= onvoldoende	V= voldoende	G= goed	ZG= zeer goed	NVT= niet van toepassing
+        </p>
+        <h4>Evaluatie opleiding:</h4>
+        <table class="table table-bordered">
+        
+            <tr>
+                <td></td>
+                <td>OV</td>
+                <td>V</td>
+                <td>G</td>
+                <td>ZG</td>
+                <td>NVT</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.BackgroundInformation)</td>
+                <td>@Html.RadioButtonFor(t => t.BackgroundInformation,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.BackgroundInformation,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.BackgroundInformation,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.BackgroundInformation,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.BackgroundInformation,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.UsefulBackgroundInformation)</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulBackgroundInformation,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulBackgroundInformation,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulBackgroundInformation,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulBackgroundInformation,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulBackgroundInformation,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.PracticeExamples)</td>
+                <td>@Html.RadioButtonFor(t => t.PracticeExamples,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.PracticeExamples,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.PracticeExamples,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.PracticeExamples,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.PracticeExamples,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.UsefulPracticeExamples)</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulPracticeExamples,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulPracticeExamples,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulPracticeExamples,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulPracticeExamples,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulPracticeExamples,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.ContentExpectation)</td>
+                <td>@Html.RadioButtonFor(t => t.ContentExpectation,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentExpectation,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentExpectation,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentExpectation,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentExpectation,"5")</td>
+            </tr>
+        </table>
+        
+        <p>@Html.LabelFor(t => t.RemarksFormation)</p>
+        @Html.TextAreaFor(t => t.RemarksFormation)
+
+        <h4>Evaluatie gebruik leerplatform:</h4>
+        <table class="table table-bordered">
+        
+            <tr>
+                <td></td>
+                <td>OV</td>
+                <td>V</td>
+                <td>G</td>
+                <td>ZG</td>
+                <td>NVT</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.PreperationLearningPlatform)</td>
+                <td>@Html.RadioButtonFor(t => t.PreperationLearningPlatform,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.PreperationLearningPlatform,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.PreperationLearningPlatform,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.PreperationLearningPlatform,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.PreperationLearningPlatform,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.PresentationLearningPlatform)</td>
+                <td>@Html.RadioButtonFor(t => t.PresentationLearningPlatform,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.PresentationLearningPlatform,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.PresentationLearningPlatform,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.PresentationLearningPlatform,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.PresentationLearningPlatform,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.ContentLearningPlatform)</td>
+                <td>@Html.RadioButtonFor(t => t.ContentLearningPlatform,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentLearningPlatform,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentLearningPlatform,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentLearningPlatform,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.ContentLearningPlatform,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.UsefulLearningPlatform)</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulLearningPlatform,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulLearningPlatform,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulLearningPlatform,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulLearningPlatform,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.UsefulLearningPlatform,"5")</td>
+            </tr>
+        </table>
+        <p>@Html.LabelFor(t => t.RemarksLearningPlatform)</p>
+        @Html.TextAreaFor(t => t.RemarksLearningPlatform)
+        
+        <h4>Evaluatie opleider:</h4>
+
+        <table class="table table-bordered">
+        
+            <tr>
+                <td></td>
+                <td>OV</td>
+                <td>V</td>
+                <td>G</td>
+                <td>ZG</td>
+                <td>NVT</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.ClearInformation)</td>
+                <td>@Html.RadioButtonFor(t => t.ClearInformation,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearInformation,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearInformation,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearInformation,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearInformation,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.ClearPresentation)</td>
+                <td>@Html.RadioButtonFor(t => t.ClearPresentation,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearPresentation,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearPresentation,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearPresentation,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.ClearPresentation,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.QuestionsMentor)</td>
+                <td>@Html.RadioButtonFor(t => t.QuestionsMentor,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.QuestionsMentor,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.QuestionsMentor,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.QuestionsMentor,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.QuestionsMentor,"5")</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(t => t.FormationManner)</td>
+                <td>@Html.RadioButtonFor(t => t.FormationManner,"1")</td>
+                <td>@Html.RadioButtonFor(t => t.FormationManner,"2")</td>
+                <td>@Html.RadioButtonFor(t => t.FormationManner,"3")</td>
+                <td>@Html.RadioButtonFor(t => t.FormationManner,"4")</td>
+                <td>@Html.RadioButtonFor(t => t.FormationManner,"5")</td>
+            </tr>
+        </table>
+        
+        <p>@Html.LabelFor(t => t.RemarksMentor)</p>
+        @Html.TextAreaFor(t => t.RemarksMentor)
+
+
+        <h4>Opmerkingen of suggesties:</h4>
+        <p>
+            @Html.LabelFor(t => t.GeneralRemark)
+        </p>
+        @Html.TextAreaFor(t=>t.GeneralRemark)
+
+
+        <p>
+            @Html.LabelFor(t => t.MissedInFormation)
+        </p>
+        @Html.TextAreaFor(t => t.MissedInFormation)
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Indienen"/>
+        </p>
+
+    }
+</div>

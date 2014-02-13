@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>VK Gent - @ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+       
+        @Styles.Render("~/Content/Bootstrap")
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+        </style>
+    </head>
+    <body> 
+      <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink( " " , "Index" , "Home" , null, new {style = "background: url('/Images/logo.png') no-repeat center right;display:block; height:20px; width:30px;margin-right:10px;",@class="brand"})
+            <div class="nav-collapse collapse">
+                @Html.Partial("_NavBar")
+                @Html.Partial("_LoginPartial")
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+        <div class="container">
+            @if (TempData["Info"] != null)
+            {
+                <div class="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    @TempData["Info"]
+                </div>
+            }
+            @if (TempData["Succes"] != null)
+            {
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    @TempData["Succes"]
+                </div>
+            }
+            @RenderBody()
+        </div>
+        
+        <div class="navbar navbar-fixed-bottom">
+            <footer class="modal-footer">
+                <p class="text-center">
+                    <a href="http://www.kindermishandeling.be/startsite/3-www.html">www.kindermishandeling.be</a> - 
+                    © Hogeschool Gent 2013
+                </p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/Bootstrap")
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

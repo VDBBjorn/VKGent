@@ -1,0 +1,42 @@
+﻿@model p2g33_web.Models.ViewModels.DetailsBoxViewModel 
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>Details doos: @Model.Title</h2>
+<div class="alert alert-info">
+    Aan de hand van beeldmateriaal die u vindt in volgende digitale doos, kunt u stilstaan bij de emotie die kindermishandeling bij u oproept.
+    <br />
+    Het voorwerp dat u kiest, wordt opgeslagen zodat er  tijdens het vormingsmoment de gelegenheid is om uw reflecties in groep te bespreken.
+</div>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.Description)</th>
+        <td>@Html.DisplayFor(t => t.Description)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.AvailableFrom)</th>
+        <td>@Html.DisplayFor(t => t.AvailableFrom)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.AvailableUntil)</th>
+        <td>@Html.DisplayFor(t => t.AvailableUntil)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.Status)</th>
+        <td>@Html.DisplayFor(t => t.Status)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.Theme)</th>
+        <td>@Html.DisplayFor(t => t.Theme)</td>
+    </tr>
+</table>
+@using (Html.BeginForm("PlayBox", "Element", FormMethod.Post))
+{
+    @Html.HiddenFor(t => t.ElementId)
+    @Html.HiddenFor(t => t.LearningProcessCode)
+    <p style="text-align: right">
+        <input type="submit" class="btn btn-primary" value="Verder"/>
+    </p>
+}

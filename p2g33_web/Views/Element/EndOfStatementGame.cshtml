@@ -1,0 +1,39 @@
+﻿@model p2g33_web.Models.ViewModels.EndOfStatementGameViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@ViewBag.Title</h2>
+<div>
+    <h3>Dit waren uw antwoorden:</h3>
+    @for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        <div class="well well-small">
+            <strong>Vraag: </strong>@Html.DisplayFor(t => t.Questions[i])<br/>
+            <strong>Antwoord: </strong>
+            @if (Model.Answers[i].Equals("rood"))
+            {
+                <div>Dit is ernstig. Hier moet klacht worden neergelegd zodat justitie zijn werk kan doen.</div>
+            }
+            else if(Model.Answers[i].Equals("geel"))
+            {
+                <div>Dit gaat te ver. Ingrijpen is noodzakelijk en hulpverlening moet een kans krijgen. Als het niet vrijwillig kan moet er een andere weg gezocht worden.</div>
+            } 
+            else if (Model.Answers[i].Equals("groen"))
+            {
+                <div>Er is iets aan de hand, maar dat moet niet worden overdreven. De persoon moet wel gewezen worden op zijn problematisch gedrag en hulpverlening moet aangeraden worden.</div>
+            } 
+            else if (Model.Answers[i].Equals("blauw"))
+            {
+                <div>We leven in een tolerante maatschappij. Hier is niets problematisch aan de hand. Dit moet kunnen.</div>
+            }
+            else
+            {
+                @Html.DisplayFor(t => t.Answers[i])
+            }
+        </div>
+    }
+    <p>
+        @Html.ActionLink("Terug naar details van leertraject", "DetailsLearningProcess", "LearningProcesses", new { id = Model.LearningProcessCode },null)
+    </p>
+</div>

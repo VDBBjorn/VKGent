@@ -1,0 +1,16 @@
+﻿@if (Request.IsAuthenticated) {
+    <ul class="nav">
+        <li class="@(ViewBag.Active == "Home" ? "active" : "")">@Html.ActionLink("Home","Index","Home")</li>
+        <li class="@(ViewBag.Active == "LearningProcesses" ? "active" : "")">@Html.ActionLink("Overzicht leertrajecten","Index","LearningProcesses")</li>
+        <li class="@(ViewBag.Active == "Contact" ? "active" : "")">@Html.ActionLink("Contact","Contact","Home")</li>
+    </ul>
+    
+} else {
+    <ul class="nav">
+        <li class="@(ViewBag.Active == "Home" ? "active" : "")">@Html.ActionLink("Home","Index","Home")</li>
+        <li class="@(ViewBag.Active == "Info" ? "active" : "")">@Html.ActionLink("Kennismakingspakket","IntroductionPackage","Home")</li>
+        <li class="@(ViewBag.Active == "Training" ? "active" : "")">@Html.ActionLink("Training aanvragen","Training","Home")</li>
+        <li class="@(ViewBag.Active == "Contact" ? "active" : "")">@Html.ActionLink("Contact","Contact","Home")</li>
+    </ul>
+    
+}

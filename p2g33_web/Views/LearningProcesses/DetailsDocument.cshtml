@@ -1,0 +1,30 @@
+﻿@model p2g33_web.Models.ViewModels.DocumentViewModel 
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>Details document: @Model.Title</h2>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.Description)</th>
+        <td>@Html.DisplayFor(t => t.Description)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.AvailableFrom)</th>
+        <td>@Html.DisplayFor(t => t.AvailableFrom)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(t => t.AvailableUntil)</th>
+        <td>@Html.DisplayFor(t => t.AvailableUntil)</td>
+    </tr>
+</table>
+@using (Html.BeginForm("ViewDocument", "Element", FormMethod.Post))
+{
+    @Html.HiddenFor(t => t.ElementId)
+    @Html.HiddenFor(t => t.LearningProcessCode)
+    @Html.HiddenFor(t => t.FileLocation)
+    <p style="text-align: right">
+        <input type="submit" class="btn btn-primary" value="Verder"/>
+    </p>
+}

@@ -1,0 +1,79 @@
+﻿@using Recaptcha.Web.Mvc
+@model p2g33_web.Models.ViewModels.IntroductionViewModel
+
+@{
+    ViewBag.Title = "Introductiepakket";
+    ViewBag.Active = "Info";
+}
+
+<h2>Aanvragen kennismakingspakket</h2>
+<div class="alert alert-info">Vul onderstaand formulier in indien u graag een kennismakingspakket van het vertrouwenscentrum wil ontvangen.<br />We contacteren u zo snel mogelijk via e-mail.</div>
+
+
+@using (Html.BeginForm("RequestIntroductionPackage", "Home"))
+{
+    @Html.AntiForgeryToken()
+    if(!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-error">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    <fieldset>
+        <div class="control-group">
+            @Html.LabelFor(t => t.FirstName)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.FirstName,new {placeholder = "bv: Jan"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.FirstName)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.LastName)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.LastName,new {placeholder = "bv: Janssens"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.LastName)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.Email)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.Email,new {placeholder = "bv: test@example.com"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.Email)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.DownloadReason)
+            <div class="controls">
+                @Html.TextAreaFor(t => t.DownloadReason)
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.DownloadReason)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <p>@Html.LabelFor(t => t.CursistType)</p>
+            <div class="controls">
+                <p>@Html.RadioButtonFor(t=>t.CursistType,"student") Student</p>
+                <p>@Html.RadioButtonFor(t=>t.CursistType,"beroepshalve") Beroepshalve</p>
+                <p>@Html.RadioButtonFor(t => t.CursistType,"intersse") Uit interesse</p>
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.CursistType)</span>
+            </div>
+        </div>
+        @* CAPTCHA *@
+        <p>Vul volgende captcha in:</p>
+        <div class="control-group">
+            <div class="controls">
+                @Html.Recaptcha()
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="verzenden"/>
+
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

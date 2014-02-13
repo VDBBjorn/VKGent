@@ -1,0 +1,21 @@
+﻿@model p2g33_web.Models.ViewModels.CaseViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@ViewBag.Title</h2>
+<div>
+    @if (Model.Feedback != null)
+     {
+         <h4>Feedback vorige vraag:</h4>
+         <p>@Model.Feedback</p>
+    }
+
+    <div class="alert alert-success">
+        De casus werd succesvol afgerond!
+    </div>
+
+    <p>
+        @Html.ActionLink("Terug naar details van leertraject", "DetailsLearningProcess", "LearningProcesses", new { id = Model.LearningProcessCode },null)
+    </p>
+</div>

@@ -1,0 +1,74 @@
+﻿@model p2g33_web.Models.ViewModels.CaseViewModel
+
+@{
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        Url = Url.Action("PlayRestCase", "Element"),
+        UpdateTargetId = "body-case"
+    };
+}
+
+@if (Model.Feedback != null)
+{
+    <div class="well">
+        
+        <h4>@Model.Question.Question</h4>
+        @if (Model.Question.Consideration != null)
+        {
+            <p>
+                <strong>Bedenking: </strong>@Model.Question.Consideration
+            </p>
+        }
+        @foreach (var answer in Model.Question.Answers)
+        {
+            <p>@Html.RadioButtonFor(t => t.AnswerId, answer.AnswerId,new {disabled = "disabled"}) @answer.Answer</p>
+        }   
+            
+    </div>
+    using (Html.BeginForm("PlayRestCase", "Element", FormMethod.Post))
+    {
+        @Html.HiddenFor(t => t.LearningProcessCode)
+        @Html.HiddenFor(t => t.Title)
+        @Html.HiddenFor(t => t.Description)
+        @Html.HiddenFor(t => t.Question)
+        @Html.HiddenFor(t => t.ElementId)
+        @Html.HiddenFor(t => t.AnswerId)
+        <div class="well">
+            <h4>Feedback:</h4>
+            <p>@Model.Feedback</p>
+            <input type="submit" class="btn btn-primary" value="Verder"/>
+        </div>
+    }
+    
+}
+else
+{
+    <div class="well">
+        @using (Ajax.BeginForm("PlayRestCase", ajaxOpts))
+        {
+            @Html.HiddenFor(t => t.LearningProcessCode)
+            @Html.HiddenFor(t => t.Title)
+            @Html.HiddenFor(t => t.Description)
+            @Html.HiddenFor(t => t.ElementId)
+
+            <h4>@Model.Question.Question</h4>
+            if (Model.Question.Consideration != null)
+            {
+                <p>
+                    <strong>Bedenking: </strong>@Model.Question.Consideration
+                </p>
+            }
+            foreach (var answer in Model.Question.Answers)
+            {
+                <p>@Html.RadioButtonFor(t => t.AnswerId, answer.AnswerId) @answer.Answer</p>
+            }
+
+            <input type="submit" class="btn btn-primary" value="Verder"/>
+            <span class="help-inline">
+                @Html.ValidationMessageFor(m => m.AnswerId)
+            </span>
+        }  
+        </div>
+}

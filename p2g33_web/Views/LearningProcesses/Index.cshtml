@@ -1,0 +1,65 @@
+﻿@model IEnumerable<p2g33_web.Models.Domain.LearningProcess>
+
+@{
+    ViewBag.Title = "Leertrajecten";
+    ViewBag.Active = "LearningProcesses";
+}
+
+<h2>Overzicht leertrajecten</h2>
+@if (Model.Any())
+{
+    <div class="alert alert-info">
+        Dit is een overzicht van alle leertrajecten waarop u bent ingeschreven bij ons vertrouwenscentrum. Achter elk van deze leertrajecten zitten documenten,
+        stellingenspellen, casussen en dozen die door u gedownload of gespeeld kunnen worden. De gegevens die verzameld worden bij het spelen van deze stellingenspellen, casussen en dozen 
+        zullen gedurende de door u bijgewoonde sessies gebruikt worden. 
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+    
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.availableFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.startDateLife)
+               
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.availableUntil)
+            </th>
+            
+        </tr>
+    
+        @foreach (var l in Model.OrderBy(l => l.startDateLife))
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(l.title, "DetailsLearningProcess", new {id = l.learningProcessCode})
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => l.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => l.availableFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => l.startDateLife)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => l.availableUntil)
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <p>Geen leertrajecten gevonden...</p>
+}

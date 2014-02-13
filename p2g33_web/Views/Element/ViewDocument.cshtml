@@ -1,0 +1,39 @@
+﻿@model p2g33_web.Models.ViewModels.DocumentViewModel 
+
+@{
+    ViewBag.Title = @Model.Title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <p>
+        @Html.ActionLink("Terug naar details van leertraject", "DetailsLearningProcess", "LearningProcesses", new { id = Model.LearningProcessCode },null)
+    </p>
+</div>
+
+@if (Session["format"].Equals("pdf"))
+{
+    <div class="text-center">
+        <iframe width="100%" height="600px" src="@Model.FileLocation?mode=mobile" frameborder="0" allowfullscreen="false" />
+    </div>
+}
+
+@if (Session["format"].Equals("video"))
+{
+    <div class="text-center">
+        <video width="320" height="240" controls="true">
+            <source src="@Model.FileLocation">
+            Video niet ondersteund door browser.
+        </video>
+    </div>
+}
+
+@if (Session["format"].Equals("other")) {
+<div>
+    <p>
+        <a href="@Model.FileLocation">Download @Model.Title</a>
+    </p>
+</div>
+}
+

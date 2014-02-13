@@ -1,0 +1,47 @@
+﻿@model p2g33_web.Models.LoginModel
+
+@{
+    ViewBag.Title = "Inloggen";
+}
+
+<hgroup class="title">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+
+<section id="loginForm" >
+@using (Html.BeginForm(new {ReturnUrl = ViewBag.ReturnUrl}))
+{
+    @Html.AntiForgeryToken()
+    if(!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-error">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    <fieldset>
+        <div class="control-group">
+            @Html.LabelFor(m => m.UserName, new {@class = "control-label"})
+            <div class="controls">
+                @Html.TextBoxFor(m => m.UserName, new {@placeholder = "test@example.com"})
+                <span class="help-inline">@Html.ValidationMessageFor(m => m.UserName)</span>
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(m => m.Password, new {@class = "control-label"})
+            <div class="controls">
+                @Html.PasswordFor(m => m.Password, new {@placeholder = "wachtwoord"})
+                <span class="help-inline">@Html.ValidationMessageFor(m => m.Password)</span>
+            </div>
+            <div>
+                <label class="checkbox" for="RememberMe">@Html.CheckBoxFor(m => m.RememberMe) Onthouden?</label>
+            </div>
+        </div> 
+        <input type="submit" value="Aanmelden" class="btn btn-primary"/>    
+    </fieldset>
+}
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

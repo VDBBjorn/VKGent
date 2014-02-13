@@ -1,0 +1,35 @@
+﻿@model p2g33_web.Models.ViewModels.EndOfBoxViewModel
+
+@{
+    ViewBag.Title = "Overzicht doos";
+}
+
+<h2>Overzicht doos: @Html.DisplayFor(t => t.Title)</h2>
+<legend>@Html.DisplayFor(t => t.Description)</legend>
+<div>
+    @for (var i=0; i < Model.Questions.Count; i ++ )
+    {
+        <div class="well well-small">
+            <table class="table">                    
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Gekozen afbeelding:</strong>
+                        </p>
+                        <img src="@Model.Images[i]" alt="imageBox" class="img-rounded" style="max-height: 200px;max-width: 300px"/> 
+                    </td> 
+                    <td>
+                        <strong>Vraag: </strong>@Html.DisplayFor(t => t.Questions[i])<br/>
+                        <strong>Motivatie: </strong>
+                        @Html.DisplayFor(t => t.Answers[i])<br/>
+                    </td>    
+                </tr> 
+            </table>
+        </div>
+            
+    }
+
+
+    @Html.ActionLink("Terug naar details van leertraject", "DetailsLearningProcess", "LearningProcesses", new { id = Model.LearningProcessCode },null)
+    
+</div>

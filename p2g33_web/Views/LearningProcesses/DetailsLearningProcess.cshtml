@@ -1,0 +1,106 @@
+﻿@model p2g33_web.Models.ViewModels.DetailsLearningProcessViewModel
+
+@{
+    ViewBag.Title = "Details leertraject";
+}
+
+<h2>@ViewBag.Title: "@Model.Title"</h2>
+<table class="table table-striped table-hover table-bordered">
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(model => model.Title)</th>
+        <td>@Html.DisplayFor(model => model.Title)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(model => model.Description)</th>
+        <td>@Html.DisplayFor(model => model.Description)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(model => model.AvailableFrom)</th>
+        <td>@Html.DisplayFor(model => model.AvailableFrom)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(model => model.StartDateLife)</th>
+        <td>@Html.DisplayFor(model => model.StartDateLife)</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(model => model.AvailableUntil)</th>
+        <td>@Html.DisplayFor(model => model.AvailableUntil)</td>
+    </tr>
+    @if(Model.Documents.Any()) 
+    {
+        <tr>
+            <th scope="row">Documenten</th>
+            <td>
+                <ul>
+                    @foreach (var element in Model.Documents)
+                    {
+                        <li>
+                            @Html.ActionLink(element.title, "DetailsDocument", "LearningProcesses", new {lpid = Model.LearningProcessCode, elementid = element.elementId}, null)
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+
+    @if(Model.StatementGames.Any()) 
+    {
+        <tr>
+            <th scope="row">Stellingenspellen</th>
+            <td>
+                <ul>
+                    @foreach (var element in Model.StatementGames)
+                    {
+                        <li>
+                            @Html.ActionLink(element.title, "DetailsStatementGame", "LearningProcesses", new {lpid = Model.LearningProcessCode, elementid = element.elementId}, null)
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+    
+    @if(Model.Cases.Any()) 
+    {
+        <tr>
+            <th scope="row">Casussen</th>
+            <td>
+                <ul>
+                    @foreach (var element in Model.Cases)
+                    {
+                        <li>
+                            @Html.ActionLink(element.title, "DetailsCase", "LearningProcesses", new {lpid = Model.LearningProcessCode, elementid = element.elementId}, null)
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+    
+    @if(Model.Boxes.Any()) 
+    {
+        <tr>
+        <th scope="row">Dozen</th>
+            <td>
+                <ul>
+                    @foreach (var element in Model.Boxes)
+                    {
+                        <li>@Html.ActionLink(element.title, "DetailsBox", "LearningProcesses", new {lpid = Model.LearningProcessCode, elementid = element.elementId}, null)</li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+
+    @if (Model.EvaluationForm==true)
+    {
+        <tr>
+            <th scope="row">Evaluatieformulier</th>
+            <td>@Html.ActionLink("Vul het evaluatieformulier in","FillInEvaluationForm",new {lpid = Model.LearningProcessCode})</td>
+        </tr>
+    }
+</table>
+
+<p class="">
+    @Html.ActionLink("Terug naar het overzicht", "Index")
+</p>

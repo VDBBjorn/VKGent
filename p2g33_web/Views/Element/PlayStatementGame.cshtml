@@ -1,0 +1,63 @@
+﻿@using p2g33_web.Models.ViewModels
+@model p2g33_web.Models.ViewModels.StatementGameViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Html.DisplayFor(t => t.Title)</h2>
+<legend>@Html.DisplayFor(t => t.Description)</legend>
+<div class="well">
+    @using (Html.BeginForm("SaveStatementGame", "Element", FormMethod.Post))
+    {
+        @Html.HiddenFor(t => t.LearningProcessCode)
+        @Html.HiddenFor(t => t.ElementId)
+        @Html.HiddenFor(t => t.Title)
+        @Html.HiddenFor(t => t.Description)
+        @Html.HiddenFor(t => t.NumberOfQuestions)
+        
+        <h4>@Model.StatementGameQuestion.Question</h4>
+        foreach (var answer in Model.StatementGameQuestion.Answers)
+        {
+            if (answer.Answer.Equals("rood"))
+            {
+                <p>@Html.RadioButtonFor(t => t.AnswerId, answer.AnswerId) Dit is ernstig. Hier moet klacht worden neergelegd zodat justitie zijn werk kan doen.</p>
+            }
+            else if(answer.Answer.Equals("geel"))
+            {
+                <p>@Html.RadioButtonFor(t => t.AnswerId, answer.AnswerId) Dit gaat te ver. Ingrijpen is noodzakelijk en hulpverlening moet een kans krijgen. Als het niet vrijwillig kan moet er een andere weg gezocht worden.</p>
+            } 
+            else if (answer.Answer.Equals("groen"))
+            {
+                <p>@Html.RadioButtonFor(t => t.AnswerId, answer.AnswerId) Er is iets aan de hand, maar dat moet niet worden overdreven. De persoon moet wel gewezen worden op zijn problematisch gedrag en hulpverlening moet aangeraden worden.</p>
+            } 
+            else if (answer.Answer.Equals("blauw"))
+            {
+                <p>@Html.RadioButtonFor(t => t.AnswerId, answer.AnswerId) We leven in een tolerante maatschappij. Hier is niets problematisch aan de hand. Dit moet kunnen.</p>
+            }
+            else
+            {
+                <p>@Html.RadioButtonFor(t => t.AnswerId, answer.AnswerId) @answer.Answer</p>
+            }
+        }
+        <br/>
+        <input type="submit" class="btn btn-primary" value="Verder"/> 
+        <span class="help-inline">
+            @Html.ValidationMessageFor(m => m.AnswerId)
+        </span>
+    }
+</div>
+    @{
+        var vraag = (int) Session["questionIndex"]+1;
+        var width = (vraag*100)/Model.NumberOfQuestions; 
+    }   
+
+    <div class="progress progress-striped active">
+        @* ReSharper disable UnexpectedValue *@
+        <div class="bar" style="width: @width%;"></div>
+    </div>
+
+
+@Scripts.Render("~/bundles/jqueryval")
+
+

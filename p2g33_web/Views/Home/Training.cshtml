@@ -1,0 +1,126 @@
+﻿@model p2g33_web.Models.ViewModels.TrainingViewModel 
+@using Recaptcha.Web.Mvc;
+
+@{
+    ViewBag.Title = "Training aanvragen";
+    ViewBag.Active = "Training";
+}
+
+<h2>Aanvraagformulier</h2>
+<div class="alert alert-info">Vul onderstaand formulier in indien u graag een training van het vertrouwenscentrum wil boeken.<br />We contacteren u zo snel mogelijk via e-mail of per telefoon.</div>
+
+@using (Html.BeginForm("RequestTraining", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    if(!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-error">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    <fieldset>
+        <div class="control-group">
+            @Html.LabelFor(t => t.Name)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.Name,new {placeholder = "bv: Jan"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.Name)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.LastName)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.LastName,new {placeholder = "bv: Janssens"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.LastName)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.Service)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.Service,new {placeholder = "bv: Basisschool de zonnebloem, Zonneland"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.Service)</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(t => t.Telephone)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.Telephone,new {placeholder = "bv: 097876543"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.Telephone)</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+        @Html.LabelFor(t => t.Fax)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.Fax,new {placeholder = "bv: 097876543"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.Fax)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.Email)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.Email,new {placeholder = "bv: test@example.com"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.Email)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.NumberOfPeople)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.NumberOfPeople,new {placeholder = "bv: 3"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.NumberOfPeople)</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(t => t.TargetGroup)
+            <div class="controls">
+                @Html.TextBoxFor(t => t.TargetGroup,new {placeholder = "bv: Kinderen 3e leerjaar"})
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.TargetGroup)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.Objective)
+            <div class="controls">
+                @Html.TextAreaFor(t => t.Objective)
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.Objective)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(t => t.PreviousKnowledge)
+            <div class="controls">
+                @Html.TextAreaFor(t => t.PreviousKnowledge)
+                <span class="help-inline">@Html.ValidationMessageFor(t => t.PreviousKnowledge)</span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <p>Prijs: te bespreken<br/>
+            Richtprijs voor vorming: 100 euro per dagdeel (halve dag of avond) – 200 euro per volle dag</p>
+            <div class="controls">
+                @Html.TextBoxFor(t => t.Price)
+                <span class="help-inline input-validation-error">@Html.ValidationMessageFor(t => t.Price)</span>
+            </div>
+        </div>
+        
+        @* CAPTCHA *@
+        <p>Vul volgende captcha in:</p>
+        <div class="control-group">
+            <div class="controls">
+                @Html.Recaptcha()
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="verzenden"/>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

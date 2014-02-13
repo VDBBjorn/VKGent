@@ -1,0 +1,53 @@
+﻿@model p2g33_web.Models.ViewModels.TrainingViewModel
+
+@{
+    ViewBag.Title = "Aanvraagformulier vorming";
+}
+
+<h2>@ViewBag.Title voor @ViewBag.Model.Name @ViewBag.Model.LastName: @DateTime.Now.ToShortDateString(), @DateTime.Now.ToShortTimeString()</h2>
+<table>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.Name)</td>
+        <td>@ViewBag.Model.Name</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.LastName)</td>
+        <td>@ViewBag.Model.LastName</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.Service)</td>
+        <td>@ViewBag.Model.Service</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.Telephone)</td>
+        <td>@ViewBag.Model.Telephone</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.Fax)</td>
+        <td>@ViewBag.Model.Fax</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.Email)</td>
+        <td>@ViewBag.Model.Email</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.NumberOfPeople)</td>
+        <td>@ViewBag.Model.NumberOfPeople</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.TargetGroup)</td>
+        <td>@ViewBag.Model.TargetGroup</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.Objective)</td>
+        <td>@ViewBag.Model.Objective</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.PreviousKnowledge)</td>
+        <td>@ViewBag.Model.PreviousKnowledge</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(t => t.Price)</td>
+        <td>@ViewBag.Model.Price</td>
+    </tr>
+</table>
