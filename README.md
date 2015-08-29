@@ -1,4 +1,4 @@
 # VKGent
 School project for center of trust 
 
-Website in Java Spring framework
+Website in ASP.NET MVC 4
